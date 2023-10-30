@@ -2,7 +2,6 @@ package meujogo.Modelo;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -19,7 +18,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-import javax.swing.plaf.basic.BasicBorders.ButtonBorder;
 
 public class Fase extends JPanel implements ActionListener {
 
@@ -114,7 +112,7 @@ public class Fase extends JPanel implements ActionListener {
 	private void clearEnemy() {
 		Iterator<Enemy> iterator = player.getEnemy().iterator();
 		while (iterator.hasNext()) {
-		    Enemy enemy = iterator.next();
+		    iterator.next();
 		    iterator.remove();
 		}
 	}
@@ -191,7 +189,6 @@ public class Fase extends JPanel implements ActionListener {
 
 	public void checBounds() {
 		Rectangle formNave = player.getBounds();
-		Rectangle formShot;
 		Rectangle formEnemy;
 
 		for (int i = 0; i < player.getEnemy().size(); i++) {
