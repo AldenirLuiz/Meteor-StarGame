@@ -36,7 +36,7 @@ public class Fase extends JPanel implements ActionListener {
 		
 		inGame = true;
 
-		ImageIcon reference = new ImageIcon("res\\background.png");
+		ImageIcon reference = new ImageIcon("res//background.png");
 		fundo = reference.getImage();
 
 		player = new Player();
@@ -49,6 +49,7 @@ public class Fase extends JPanel implements ActionListener {
 		restartButton = new JButton("Restart");
 	    restartButton.addActionListener(e -> resetGame());
 	    add(restartButton, BorderLayout.CENTER);
+		
 	    addKeyListener(new TecladoAdapter());
 	    restartButton.setVisible(false);
 	}
@@ -75,6 +76,9 @@ public class Fase extends JPanel implements ActionListener {
 			g.drawChars(valEscore, 0, valEscore.length, 100, 100);
 
 		} else {
+			
+			graficos.drawImage(fundo, 0, 0, null);
+			loadGraphic(player.getStars(), graficos);
 			
 			g.setFont(new Font("TimesRoman", Font.BOLD, 64));
 			g.setColor(Color.red);
@@ -122,7 +126,6 @@ public class Fase extends JPanel implements ActionListener {
 		for (int i = 0; i < source.size(); i++) {
 			if (source.get(i).getClass().toString().endsWith("Tiro")) {
 				Tiro tiro = (Tiro) source.get(i);
-				// System.out.printf("%s \n", tiro.getImage());
 				tiro.load(graph);
 			} else if (source.get(i).getClass().toString().endsWith("Stars")) {
 				Stars star = (Stars) source.get(i);
@@ -154,7 +157,7 @@ public class Fase extends JPanel implements ActionListener {
 		for (int i = 0; i < enemyList.size(); i++) {
 			Enemy enemy = enemyList.get(i);
 			if (enemy.isAlive()) {
-				enemy.update(player.getX(), player.getY());
+				enemy.update();
 			} else {
 				enemyList.remove(i);
 			}

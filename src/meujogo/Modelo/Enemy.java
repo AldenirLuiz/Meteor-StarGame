@@ -17,7 +17,7 @@ public class Enemy {
 	private Color color;
 	private Random randInt = new Random();
 
-	public void update(int x, int y) {
+	public void update() {
 		this.posX -= this.speed;
 		if (this.posX < 0) {
 			this.isAlive = false;
